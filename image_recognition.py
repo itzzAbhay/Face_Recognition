@@ -30,14 +30,12 @@ def extract_encodings(images):
     encodings = []
     for img in images:
         try:
-            # DeepFace expects RGB format
             rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            # Extract face embedding (512D vector)
             embedding = DeepFace.represent(
                 rgb_img,
-                model_name="Facenet",  # or "VGG-Face", "OpenFace", etc.
-                enforce_detection=False,  # Skip if no face detected
-                detector_backend="opencv",  # Faster than default
+                model_name="Facenet",
+                enforce_detection=False,
+                detector_backend="opencv",
             )
             if embedding:
                 encodings.append(embedding[0]["embedding"])
@@ -115,5 +113,8 @@ def index():
         result = recognize_faces()
     return render_template('index5.html', result=result)
 
+# Updated run block for production
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 5000))  # use environment PORT if available
+    app.run(host='0.0.0.0', port=port)
