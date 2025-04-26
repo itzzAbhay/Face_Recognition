@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Recognition System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #121212;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            /* overflow: hidden; */
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQptoaQIcw32ovDVZ0vU09y3gudNNCxCOjmWg&s');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #00bcd4;
+            font-size: 2.5rem;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #00bcd4;
+            border: none;
+            padding: 12px 24px;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0097a7;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #ffc107;
+        }
+
+        pre {
+            background: #1e1e1e;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1000px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+        }
+
+        #loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #00bcd4;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Recognition System</h1>
+
+    <p style="max-width: 800px; text-align: center; margin-bottom: 30px; color: #cccccc;">
+        This Face Recognition System operates by training on stored images using key steps: Face Detection,
+        Feature Extraction & Encoding, and measuring Recognition Accuracy. Test images are compared against
+        the trained data to identify matching faces. Please wait a moment while the recognition process completes.
+    </p>
+
+    <form method="post" onsubmit="showLoading()">
+        <button type="submit">Start Recognition</button>
+    </form>
+
+    <div id="loading">Loading... Please wait.</div>
+
+    {% if result %}
+        <h2>Recognition Output</h2>
+        <pre>{{ result }}</pre>
+        <script>
+            // Hide loading after result is shown
+            document.getElementById('loading').style.display = 'none';
+        </script>
+    {% endif %}
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
