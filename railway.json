@@ -1,8 +1,13 @@
 {
-  "builds": [
-    {
-      "src": "./",
-      "use": "@railway/python"
+  "build": {
+    "nixpacks": {
+      "pkgs": [
+        "libgl1",
+        "libglib2.0-0",
+        "libsm6",
+        "libxext6",
+        "libxrender1"
+      ]
     }
-  ]
+  }
 }
