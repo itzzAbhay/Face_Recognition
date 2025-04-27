@@ -1,0 +1,10 @@
+[phases.setup]
+nixpkgsArchive = "22.05"
+
+[phases.install]
+cmds = [
+  "pip install -r requirements.txt"
+]
+
+[phases.start]
+cmd = "gunicorn image_recognition:app"
