@@ -1,7 +1,8 @@
 {
-  "build": {
-    "builder": "buildpacks",
-    "buildCommand": "pip install -r requirements.txt",
-    "startCommand": "gunicorn image_recognition:app"
-  }
+  "builds": [
+    {
+      "src": "./",
+      "use": "@railway/python"
+    }
+  ]
 }
