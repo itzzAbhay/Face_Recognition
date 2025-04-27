@@ -1,7 +1,7 @@
 Flask==3.0.2
 gunicorn==23.0.0
 deepface==0.0.79
-opencv-python-headless
+opencv-python-headless==4.9.0.80
 scikit-learn==1.4.0
 numpy==1.26.0
 pandas==2.2.3
